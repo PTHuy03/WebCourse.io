@@ -267,5 +267,13 @@
         </div>
       </div>
     </div>
+    <script>
+      const iframe = document.querySelector(".drawer-frame");
+      iframe.addEventListener("load", () => {
+        // Gửi URL hiện tại sang drawer.html
+        iframe.contentWindow.postMessage(window.location.pathname, "*");
+      });
+    </script>
+    
   </body>
 </html>

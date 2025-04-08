@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sidebar Menu</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .sidebar {
+      height: 100vh;
+      width: 250px;
+      background-color: #fff;
+      border-right: 1px solid #ddd;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px 10px;
+    }
+    .sidebar a {
+      text-decoration: none;
+      color: #000;
+      padding: 8px 10px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sidebar a:hover, .sidebar a.active {
+      background-color: #f0f0f0;
+      color: #6f42c1;
+    }
+    .sidebar .logo {
+      font-weight: bold;
+      color: #6f42c1;
+      font-size: 20px;
+    }
+    .bottom-menu a.logout {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+<div class="sidebar">
+  <!-- Top content -->
+  <div>
+    <div class="d-flex align-items-center mb-4 px-2">
+      <div class="me-2">
+        <i class="bi bi-star-fill text-primary"></i>
+      </div>
+      <div class="logo">COURSEUE</div>
+    </div>
+
+    <div class="px-2 mb-3 text-uppercase small">Overview</div>
+    <nav class="nav flex-column">
+      <a href="#" class="nav-link active"><i class="bi bi-house-door"></i> Dashboard</a>
+      <a href="#" class="nav-link"><i class="bi bi-book"></i> List Course</a>
+      <a href="#" class="nav-link"><i class="bi bi-chat-left-dots"></i> Course Review</a>
+      <a href="#" class="nav-link"><i class="bi bi-info-circle"></i> About</a>
+      <a href="#" class="nav-link"><i class="bi bi-question-circle"></i> Support</a>
+    </nav>
+  </div>
+
+  <!-- Bottom content -->
+  <div>
+    <div class="px-2 mb-2 text-uppercase small">Settings</div>
+    <nav class="nav flex-column bottom-menu">
+      <a href="#" class="nav-link"><i class="bi bi-gear"></i> Settings</a>
+      <a href="#" class="nav-link logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+    </nav>
+  </div>
+</div>
+
+<!-- Bootstrap icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

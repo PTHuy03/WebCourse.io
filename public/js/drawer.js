@@ -9,6 +9,10 @@ window.addEventListener("message", function (event) {
     if (currentPath.endsWith("edituser.html") && linkPath === "setting.html") {
       link.classList.add("active");
     }
+    // Trường hợp trang chính / hoặc index.html thì active dashboard
+    else if (currentPath === "/" && linkPath === "index.html") {
+      link.classList.add("active");
+    }
     // Các trường hợp bình thường
     else if (currentPath.endsWith(linkPath)) {
       link.classList.add("active");

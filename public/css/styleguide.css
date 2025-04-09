@@ -1,0 +1,6 @@
+:root {
+  --cards-long-default: 0px 14px 42px 0px rgba(8, 15, 52, 0.06);
+  --primary-color-gray-90: rgba(63, 63, 63, 1);
+  --primary-color-gray-100: rgba(32, 32, 32, 1);
+  --primary-color-gray-10: rgba(255, 255, 255, 1);
+}

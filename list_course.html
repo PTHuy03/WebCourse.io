@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ - Đường đua lập trình</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f8f9fa;
+        }
+
+        /* Drawer sidebar style */
+        .drawer-frame {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 260px;
+            height: 100vh;
+            border: none;
+            z-index: 1000;
+        }
+
+        .main-content {
+            margin-left: 260px;
+            padding: 30px;
+        }
+
+        .card img {
+            height: 165.7px;
+            object-fit: cover;
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 40px;
+        }
+
+        .search-box input {
+            border-radius: 30px;
+            padding-left: 40px;
+        }
+
+        .search-box .bi-search {
+            position: absolute;
+            left: 15px;
+            top: 10px;
+            font-size: 18px;
+            color: gray;
+        }
+
+        .search-container {
+            position: relative;
+        }
+
+        h4.section-title {
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+        }
+
+        .card-text {
+            font-size: 0.95rem;
+        }
+        div .card {
+            height: 350px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar Drawer -->
+    <iframe src="drawer.html" class="drawer-frame"></iframe>
+
+    <!-- Nội dung chính -->
+    <div class="main-content">
+        <!-- Banner -->
+        <div class="mb-4 text-center">
+            <img src="public/img/BannerC+.webp" alt="Banner" class="img-fluid rounded-3">
+        </div>
+
+        <!-- Tiêu đề -->
+        <h4 class="section-title">Tất cả các khóa học</h4>
+
+        <!-- Thanh tìm kiếm -->
+        <div class="search-box mb-4">
+            <div class="search-container">
+                <i class="bi bi-search"></i>
+                <input type="text" class="form-control ps-5" placeholder="Tìm kiếm khóa học...">
+            </div>
+        </div>
+
+        <!-- Danh sách khóa học -->
+        <div class="row mb-2 justify-content-center">
+            <!-- Khóa học Python -->
+            <div class="col-md-3 mb-4">
+                <a href="detail1.html" class="text-decoration-none text-dark">
+                <div class="card shadow-sm rounded-4">
+                    <img src="public/img/PY.png" class="card-img-top rounded-top-4" alt="Python">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <h5 class="card-title fw-bold">Lập trình Python cơ bản</h5>
+                        <div class="mt-auto">
+                            <hr class="my-3">
+                        <div class="d-flex justify-content-between text-muted mb-2">
+                            <div><i class="bi bi-clock"></i> 4 Tuần</div>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                            </div>
+                        </div>
+                        <span class="text-success fw-semibold">Miễn phí</span>
+                        </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+
+            <!-- Khóa học C++ -->
+            <div class="col-md-3 mb-4">
+                <a href="detail2.html" class="text-decoration-none text-dark">
+                <div class="card shadow-sm rounded-4">
+                    <img src="public/img/C+.png" class="card-img-top rounded-top-4" alt="C++">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <h5 class="card-title fw-bold">C++ cho người mới bắt đầu</h5>
+                        <div class="mt-auto">
+                            <hr class="my-3">
+                            <div class="d-flex justify-content-between text-muted mb-2">
+                                <div><i class="bi bi-clock"></i> 3 Tuần</div>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill fs-5"></i>
+                                    <i class="bi bi-star-fill fs-5"></i>
+                                    <i class="bi bi-star-fill fs-5"></i>
+                                    <i class="bi bi-star-fill fs-5"></i>
+                                    <i class="bi bi-star-fill fs-5"></i>
+                                </div>
+                            </div>
+                            <span class="text-success fw-semibold">Miễn phí</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </a>
+            </div>
+
+            <!-- Khóa học JavaScript -->
+            <div class="col-md-3 mb-4">
+                <a href="detail3.html" class="text-decoration-none text-dark">
+                  <div class="card shadow-sm rounded-4 h-100">
+                    <img src="public/img/Js.png" class="card-img-top rounded-top-4" alt="JavaScript">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                      <h5 class="card-title fw-bold">JavaScript cho người mới bắt đầu</h5>
+                      <div class="mt-auto">
+                        <hr class="my-3">
+                        <div class="d-flex justify-content-between text-muted mb-2">
+                          <div><i class="bi bi-clock"></i> 4 Tuần</div>
+                          <div class="text-warning">
+                            <i class="bi bi-star-fill fs-5"></i>
+                            <i class="bi bi-star-fill fs-5"></i>
+                            <i class="bi bi-star-fill fs-5"></i>
+                            <i class="bi bi-star-fill fs-5"></i>
+                            <i class="bi bi-star fs-5"></i>
+                          </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                          <span class="text-success fw-semibold"><del>739.000đ</del></span>
+                          <span class="fw-bold text-warning">
+                            <img src="public/img/sale.png" alt="sale" style="width: 20px; height: 20px;" class="me-1">
+                            499.000đ
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>              
+            <!-- Khóa học C++ OOP -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm rounded-4">
+                    <img src="public/img/C+OOP.png" class="card-img-top rounded-top-4" alt="JavaScript">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <h5 class="card-title fw-bold">Lập trình hướng đối tượng trong C++</h5>
+                        <div class="mt-auto">
+                            <hr class="my-3">
+                        <div class="d-flex justify-content-between text-muted mb-2">
+                            <div><i class="bi bi-clock"></i> 5 Tuần</div>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star fs-5"></i>
+                                <i class="bi bi-star fs-5"></i>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-success fw-semibold"><del>650.000đ</del></span>
+                            <span class="fw-bold text-warning">
+                                <img src="public/img/sale.png" alt="sale" style="width: 20px; height: 20px;"
+                                    class="me-1">
+                                339.000đ
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row mb-5 justify-content-center">
+            <!-- Khóa học SQL -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm rounded-4">
+                    <img src="public/img/SQLCB.png" class="card-img-top rounded-top-4" alt="Python">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <h5 class="card-title fw-bold">SQL cho người mới bắt đầu</h5>
+                        <div class="mt-auto">
+                            <hr class="my-3">
+                        <div class="d-flex justify-content-between text-muted mb-2">
+                            <div><i class="bi bi-clock"></i> 4 Tuần</div>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star fs-5"></i>
+                            </div>
+                        </div>
+                        <span class="text-success fw-semibold">Miễn phí</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Khóa học C++ Nâng cao -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm rounded-4">
+                    <img src="public/img/C+NC.png" class="card-img-top rounded-top-4" alt="C++">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <h5 class="card-title fw-bold">Lập trình C++ nâng cao</h5>
+                        <div class="mt-auto">
+                            <hr class="my-3">
+                            <div class="d-flex justify-content-between text-muted mb-2">
+                                <div><i class="bi bi-clock"></i> 7 Tuần</div>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill fs-5"></i>
+                                    <i class="bi bi-star-fill fs-5"></i>
+                                    <i class="bi bi-star-fill fs-5"></i>
+                                    <i class="bi bi-star-fill fs-5"></i>
+                                    <i class="bi bi-star fs-5"></i>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="text-success fw-semibold"><del>859.000đ</del></span>
+                                <span class="fw-bold text-warning">
+                                    <img src="public/img/sale.png" alt="sale" style="width: 20px; height: 20px;"
+                                        class="me-1">
+                                    539.000đ
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <!-- Khóa học Python nâng cao -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm rounded-4">
+                    <img src="public/img/PYNC.png" class="card-img-top rounded-top-4" alt="JavaScript">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <h5 class="card-title fw-bold">Lập trình Python nâng cao</h5>
+                        <div class="mt-auto">
+                            <hr class="my-3">
+                        <div class="d-flex justify-content-between text-muted mb-2">
+                            <div><i class="bi bi-clock"></i> 6 Tuần</div>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-success fw-semibold"><del>789.000đ</del></span>
+                            <span class="fw-bold text-danger">
+                                <img src="public/img/sale.png" alt="sale" style="width: 20px; height: 20px;"
+                                    class="me-1">
+                                599.000đ
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Khóa học SQL nâng cao -->
+            <div class="col-md-3 mb-4">
+                <div class="card shadow-sm rounded-4">
+                    <img src="public/img/SQLNC.png" class="card-img-top rounded-top-4" alt="JavaScript">
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <h5 class="card-title fw-bold">SQL nâng cao</h5>
+                        <div class="mt-auto">
+                            <hr class="my-3">
+                        <div class="d-flex justify-content-between text-muted mb-2">
+                            <div><i class="bi bi-clock"></i> 4 Tuần</div>
+                            <div class="text-warning">
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star-fill fs-5"></i>
+                                <i class="bi bi-star fs-5"></i>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-success fw-semibold"><del>699.000đ</del></span>
+                            <span class="fw-bold text-danger">
+                                <img src="public/img/sale.png" alt="sale" style="width: 20px; height: 20px;"
+                                    class="me-1">
+                                439.000đ
+                            </span>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script>
+            const iframe = document.querySelector(".drawer-frame");
+            iframe.addEventListener("load", () => {
+              // Gửi URL hiện tại sang drawer.html
+              iframe.contentWindow.postMessage(window.location.pathname, "*");
+            });
+          </script>
+</body>
+
+</html>

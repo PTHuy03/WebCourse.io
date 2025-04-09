@@ -23,7 +23,7 @@
 
     <style>
       body {
-        font-family: 'Segoe UI', Tahoma, sans-serif;
+        font-family: "Segoe UI", Tahoma, sans-serif;
         margin: 0;
         background-color: #f5f7fa;
       }
@@ -44,20 +44,21 @@
       .lesson-card {
         background: #fff;
         border-radius: 15px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         padding: 30px;
         margin-bottom: 30px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       .lesson-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
       }
       .lesson-title {
         font-size: 28px;
         font-weight: 700;
         margin-bottom: 20px;
-        background: linear-gradient(to right, #344c84, #D9AB01);
+        background: linear-gradient(to right, #344c84, #d9ab01);
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -67,7 +68,7 @@
         height: 0;
         overflow: hidden;
         border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         margin-bottom: 20px;
       }
       .video-container iframe {
@@ -115,28 +116,33 @@
         "intro-python": {
           title: "Giới thiệu Python và chú thích",
           video: "https://www.youtube.com/embed/kqtD5dpn9C8",
-          description: "Bài giảng giới thiệu tổng quan về Python và cách sử dụng chú thích trong mã nguồn."
+          description:
+            "Bài giảng giới thiệu tổng quan về Python và cách sử dụng chú thích trong mã nguồn.",
         },
         "hello-world": {
           title: "Viết chương trình Hello World đầu tiên",
           video: "https://www.youtube.com/embed/kqtD5dpn9C8",
-          description: "Hướng dẫn viết chương trình Python đầu tiên để in ra dòng chữ Hello World."
+          description:
+            "Hướng dẫn viết chương trình Python đầu tiên để in ra dòng chữ Hello World.",
         },
         "print-exercise": {
           title: "Bài tập cơ bản với câu lệnh print",
           video: "https://www.youtube.com/embed/4F2m91eKmts",
-          description: "Thực hành sử dụng câu lệnh print để in nhiều loại dữ liệu khác nhau."
+          description:
+            "Thực hành sử dụng câu lệnh print để in nhiều loại dữ liệu khác nhau.",
         },
         "sum-two-numbers": {
           title: "Bài tập tính tổng hai số",
           video: "https://www.youtube.com/embed/8ext9G7xspg",
-          description: "Hướng dẫn viết chương trình nhập hai số và tính tổng của chúng."
+          description:
+            "Hướng dẫn viết chương trình nhập hai số và tính tổng của chúng.",
         },
         "python-comment": {
           title: "Comment trong Python",
           video: "https://www.youtube.com/embed/7lmCu8wz8ro",
-          description: "Tìm hiểu về cách sử dụng comment để ghi chú trong mã Python."
-        }
+          description:
+            "Tìm hiểu về cách sử dụng comment để ghi chú trong mã Python.",
+        },
       };
 
       function getQueryParam(param) {
@@ -144,16 +150,19 @@
         return urlParams.get(param);
       }
 
-      const lessonId = getQueryParam('lesson');
+      const lessonId = getQueryParam("lesson");
       const lesson = lessons[lessonId];
 
       if (lesson) {
-        document.getElementById('lesson-title').innerText = lesson.title;
-        document.getElementById('lesson-video').src = lesson.video;
-        document.getElementById('lesson-description').innerText = lesson.description;
+        document.getElementById("lesson-title").innerText = lesson.title;
+        document.getElementById("lesson-video").src = lesson.video;
+        document.getElementById("lesson-description").innerText =
+          lesson.description;
       } else {
-        document.getElementById('lesson-title').innerText = "Bài giảng không tồn tại";
-        document.getElementById('lesson-description').innerText = "Không tìm thấy nội dung cho bài giảng này.";
+        document.getElementById("lesson-title").innerText =
+          "Bài giảng không tồn tại";
+        document.getElementById("lesson-description").innerText =
+          "Không tìm thấy nội dung cho bài giảng này.";
       }
     </script>
   </body>

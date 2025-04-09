@@ -1,4 +1,5 @@
 // Active menu highlight
+// Active menu highlight
 window.addEventListener("message", function (event) {
   const currentPath = event.data;
 
@@ -10,7 +11,10 @@ window.addEventListener("message", function (event) {
       link.classList.add("active");
     }
     // Trường hợp trang chính / hoặc index.html thì active dashboard
-    else if (currentPath === "/" && linkPath === "index.html") {
+    else if (
+      (currentPath === "/" || currentPath.endsWith("index.html")) &&
+      linkPath === "index.html"
+    ) {
       link.classList.add("active");
     }
     // Các trường hợp bình thường

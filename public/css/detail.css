@@ -1,0 +1,51 @@
+p {
+  line-height: 1.5;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 30px;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+h4 {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+ul {
+  list-style-type: disc;
+  padding-left: 1.2rem; /* hoặc 20px */
+}
+
+li {
+  margin-left: 0; /* đảm bảo không có margin thừa */
+}
+.group27-content h3 {
+  margin-top: 0px;
+}
+.course-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* khoảng cách giữa các <p> */
+}
+
+.course-info p {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  gap: 8px; /* khoảng cách giữa icon và chữ */
+}
+
+.course-info img {
+  width: 1em;
+  height: 1em;
+  object-fit: contain;
+}

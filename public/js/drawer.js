@@ -8,7 +8,9 @@ window.addEventListener("message", function (event) {
     // Trường hợp đặc biệt: nếu là edituser.html thì active setting
     if (currentPath.endsWith("edituser.html") && linkPath === "setting.html") {
       link.classList.add("active");
-    } else if (currentPath.endsWith(linkPath)) {
+    }
+    // Các trường hợp bình thường
+    else if (currentPath.endsWith(linkPath)) {
       link.classList.add("active");
     } else {
       link.classList.remove("active");

@@ -92,7 +92,6 @@
       font-weight: bold;
       font-size: 25px;
       color: #1e7efc;
-      margin-bottom: 20px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -148,38 +147,22 @@
       justify-content: space-between;
       align-items: center;
     }
+
+    /* Drawer sidebar style */
+    .drawer-frame {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 100vh;
+        border: none;
+        z-index: 1000;
+      }
   </style>
 </head>
 <body>
-
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <div>
-      <div class="d-flex align-items-center mb-4 px-2">
-        <div class="me-2">
-          <i class="bi bi-star-fill text-primary"></i>
-        </div>
-        <div class="logo">COURSUE</div>
-      </div>
-
-      <div class="px-2 mb-3 text-uppercase small">Overview</div>
-      <nav class="nav flex-column">
-        <a href="#" class="nav-link active"><i class="bi bi-house-door"></i> Dashboard</a>
-        <a href="#" class="nav-link"><i class="bi bi-book"></i> List Course</a>
-        <a href="#" class="nav-link"><i class="bi bi-chat-left-dots"></i> Course Review</a>
-        <a href="about.html" class="nav-link"><i class="bi bi-info-circle"></i> About</a>
-        <a href="support.html" class="nav-link"><i class="bi bi-question-circle"></i> Support</a>
-      </nav>
-    </div>
-
-    <div>
-      <div class="px-2 mb-2 text-uppercase small">Settings</div>
-      <nav class="nav flex-column bottom-menu">
-        <a href="#" class="nav-link"><i class="bi bi-gear"></i> Settings</a>
-        <a href="#" class="nav-link logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
-      </nav>
-    </div>
-  </div>
+<!-- Drawer Sidebar -->
+<iframe src="drawer.html" class="drawer-frame"></iframe>
 
   <!-- Main content -->
   <div class="main-content">
@@ -242,5 +225,12 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const iframe = document.querySelector(".drawer-frame");
+    iframe.addEventListener("load", () => {
+      // Gửi URL hiện tại sang drawer.html
+      iframe.contentWindow.postMessage(window.location.pathname, "*");
+    });
+  </script>
 </body>
 </html>

@@ -181,10 +181,18 @@
                   dễ hiểu, học xong bạn có thể tự tin để tới với các chủ đề nâng
                   cao hơn của Python.
                 </p>
-                <p class="author">
-                  Tác giả: <span style="color: blue"> locnguyen305 </span>
-                  <span class="rating" style="font-size: 30px">★★★★★</span>
-                </p>
+                <div class="author d-flex align-items-center">
+                  <span class="me-3">
+                    Tác giả: <span style="color: blue">locnguyen305</span>
+                  </span>
+                  <div class="text-warning">
+                    <i class="bi bi-star-fill fs-5"></i>
+                    <i class="bi bi-star-fill fs-5"></i>
+                    <i class="bi bi-star-fill fs-5"></i>
+                    <i class="bi bi-star-fill fs-5"></i>
+                    <i class="bi bi-star-fill fs-5"></i>
+                  </div>
+                </div>
                 <p class="students">1384 Học viên</p>
               </div>
               <div class="course-banner-right">
@@ -198,12 +206,12 @@
             <!-- Tabs -->
             <section class="d-flex gap-4 border-bottom mb-4 pb-2">
               <a
-                href="detail.html"
+                href="detail1.html"
                 class="fw-bold pb-2 text-decoration-none text-dark"
                 >Giới thiệu</a
               >
               <a
-                href="course.html"
+                href="lesson1.html"
                 class="fw-bold border-bottom border-primary pb-2 text-decoration-none text-dark"
                 >Giáo trình</a
               >
@@ -339,12 +347,57 @@
                 const chapterDetails = {
                   1: `
                     <div class="d-flex flex-column gap-2">
-                      <div class="p-2 border rounded">Giới thiệu Python và chú thích (15 phút)</div>
-                      <div class="p-2 border rounded">Viết chương trình Hello World đầu tiên (15 phút)</div>
-                      <div class="p-2 border rounded">Bài tập cơ bản với câu lệnh print (20 phút)</div>
-                      <div class="p-2 border rounded">Bài tập tính tổng hai số (20 phút)</div>
-                      <div class="p-2 border rounded">Comment trong Python (15 phút)</div>
-                    </div>
+                    <a
+                      href="lesson1.html?lesson=intro-python"
+                      class="p-2 border rounded text-decoration-none text-dark"
+                    >
+                      Giới thiệu Python và chú thích
+                      <div class="d-flex gap-2 mt-2">
+                        <i class="bi bi-clock"></i>
+                        <span>15 phút</span>
+                      </div>
+                    </a>
+                    <a
+                      href="lesson1.html?lesson=hello-world"
+                      class="p-2 border rounded text-decoration-none text-dark"
+                    >
+                      Viết chương trình Hello World đầu tiên
+                      <div class="d-flex gap-2 mt-2">
+                        <i class="bi bi-clock"></i>
+                        <span>15 phút</span>
+                      </div>
+                    </a>
+                    <a
+                      href="lesson1.html?lesson=print-exercise"
+                      class="p-2 border rounded text-decoration-none text-dark"
+                    >
+                      Bài tập cơ bản với câu lệnh print
+                      <div class="d-flex gap-2 mt-2">
+                        <i class="bi bi-clock"></i>
+                        <span>20 phút</span>
+                      </div>
+                    </a>
+                    <a
+                      href="lesson1.html?lesson=sum-two-numbers"
+                      class="p-2 border rounded text-decoration-none text-dark"
+                    >
+                      Bài tập tính tổng hai số
+                      <div class="d-flex gap-2 mt-2">
+                        <i class="bi bi-clock"></i>
+                        <span>20 phút</span>
+                      </div>
+                    </a>
+                    <a
+                      href="lesson1.html?lesson=python-comment"
+                      class="p-2 border rounded text-decoration-none text-dark"
+                    >
+                      Comment trong Python
+                      <div class="d-flex gap-2 mt-2">
+                        <i class="bi bi-clock"></i>
+                        <span>15 phút</span>
+                      </div>
+                    </a>
+                  </div>
                   `,
                   2: `
                     <div class="d-flex flex-column gap-2">

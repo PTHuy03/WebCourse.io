@@ -170,15 +170,23 @@
                   dễ hiểu, học xong bạn có thể tự tin để tới với các chủ đề nâng
                   cao hơn của Python.
                 </p>
-                <p class="author">
-                  Tác giả: <span style="color: blue"> locnguyen305 </span>
-                  <span class="rating" style="font-size: 30px">★★★★★</span>
-                </p>
+                <div class="author d-flex align-items-center">
+                  <span class="me-3">
+                    Tác giả: <span style="color: blue">tuanql35</span>
+                  </span>
+                  <div class="text-warning">
+                    <i class="bi bi-star-fill fs-5"></i>
+                    <i class="bi bi-star-fill fs-5"></i>
+                    <i class="bi bi-star-fill fs-5"></i>
+                    <i class="bi bi-star-fill fs-5"></i>
+                    <i class="bi bi-star fs-5"></i>
+                  </div>
+                </div>
                 <p class="students">1384 Học viên</p>
               </div>
               <div class="course-banner-right">
                 <img
-                  src="public/images/course-python-banner.png"
+                  src="public/img/course-python-banner.png"
                   alt="Python Logo"
                 />
               </div>
@@ -191,7 +199,7 @@
                 >Giới thiệu</a
               >
               <a
-                href="course2.html"
+                href="lesson2.html"
                 class="fw-bold border-bottom border-primary pb-2 text-decoration-none text-dark"
                 >Giáo trình</a
               >
@@ -263,31 +271,32 @@
                   <div class="d-flex flex-column gap-2">
                     <div class="p-2 border rounded">
                       Chương trình C++ đầu tiên
-                      <div class="d-flex justify-content-between mt-2">
-                        <i class="bi bi-clock"></i><span>15 phút</span>
+                      <div class="d-flex gap-2 mt-2">
+                        <i class="bi bi-clock"></i>
+                        <span>15 phút</span>
                       </div>
                     </div>
                     <div class="p-2 border rounded">
                       Cài đặt môi trường lập trình C++
-                      <div class="d-flex justify-content-between mt-2">
+                      <div class="d-flex gap-2 mt-2">
                         <i class="bi bi-clock"></i><span>10 phút</span>
                       </div>
                     </div>
                     <div class="p-2 border rounded">
                       Viết chương trình Hello World đầu tiên trong C++
-                      <div class="d-flex justify-content-between mt-2">
+                      <div class="d-flex gap-2 mt-2">
                         <i class="bi bi-clock"></i><span>12 phút</span>
                       </div>
                     </div>
                     <div class="p-2 border rounded">
                       Bài tập C++ cơ bản: câu lệnh cout
-                      <div class="d-flex justify-content-between mt-2">
+                      <div class="d-flex gap-2 mt-2">
                         <i class="bi bi-clock"></i><span>15 phút</span>
                       </div>
                     </div>
                     <div class="p-2 border rounded">
                       Bài tập C++ cơ bản: tính tổng hai số
-                      <div class="d-flex justify-content-between mt-2">
+                      <div class="d-flex gap-2 mt-2">
                         <i class="bi bi-clock"></i><span>15 phút</span>
                       </div>
                     </div>
@@ -304,13 +313,40 @@
                 const chapterDetails = {
                   1: `
 <div class="d-flex flex-column gap-2">
-<div class="p-2 border rounded">Chương trình C++ đầu tiên<div class="d-flex justify-content-between mt-2"><i class="bi bi-clock"></i><span>15 phút</span></div></div>
-<div class="p-2 border rounded">Cài đặt môi trường lập trình C++<div class="d-flex justify-content-between mt-2"><i class="bi bi-clock"></i><span>10 phút</span></div></div>
-<div class="p-2 border rounded">Viết chương trình Hello World đầu tiên trong C++<div class="d-flex justify-content-between mt-2"><i class="bi bi-clock"></i><span>12 phút</span></div></div>
-<div class="p-2 border rounded">Bài tập C++ cơ bản: câu lệnh cout<div class="d-flex justify-content-between mt-2"><i class="bi bi-clock"></i><span>15 phút</span></div></div>
-<div class="p-2 border rounded">Bài tập C++ cơ bản: tính tổng hai số<div class="d-flex justify-content-between mt-2"><i class="bi bi-clock"></i><span>15 phút</span></div></div>
-</div>
-`,
+                    <div class="p-2 border rounded">
+                      Chương trình C++ đầu tiên
+                      <div class="d-flex gap-2 mt-2">
+                        <i class="bi bi-clock"></i>
+                        <span>15 phút</span>
+                      </div>
+                    </div>
+                    <div class="p-2 border rounded">
+                      Cài đặt môi trường lập trình C++
+                      <div class="d-flex gap-2 mt-2">
+                        <i class="bi bi-clock"></i><span>10 phút</span>
+                      </div>
+                    </div>
+                    <div class="p-2 border rounded">
+                      Viết chương trình Hello World đầu tiên trong C++
+                      <div class="d-flex gap-2 mt-2">
+                        <i class="bi bi-clock"></i><span>12 phút</span>
+                      </div>
+                    </div>
+                    <div class="p-2 border rounded">
+                      Bài tập C++ cơ bản: câu lệnh cout
+                      <div class="d-flex gap-2 mt-2">
+                        <i class="bi bi-clock"></i><span>15 phút</span>
+                      </div>
+                    </div>
+                    <div class="p-2 border rounded">
+                      Bài tập C++ cơ bản: tính tổng hai số
+                      <div class="d-flex gap-2 mt-2">
+                        <i class="bi bi-clock"></i><span>15 phút</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                `,
                   2: "<h4>Chương 2</h4><p>Nội dung chương 2 sẽ được cập nhật.</p>",
                   3: "<h4>Chương 3</h4><p>Nội dung chương 3 sẽ được cập nhật.</p>",
                   4: "<h4>Chương 4</h4><p>Nội dung chương 4 sẽ được cập nhật.</p>",
@@ -336,7 +372,7 @@
           <div class="col-md-4" style="min-height: 300px">
             <div class="group27 mb-4">
               <img
-                src="public/images/group27-bg.png"
+                src="public/img/group27-bg.png"
                 alt="Background"
                 class="bg"
               />
@@ -345,15 +381,15 @@
                 <h4>Thông tin khóa học</h4>
                 <div class="course-info">
                   <p>
-                    <img src="public/images/group27-icon1.svg" alt="Icon 1" /> 4
+                    <img src="public/img/group27-icon1.svg" alt="Icon 1" /> 4
                     tuần
                   </p>
                   <p>
-                    <img src="public/images/group27-icon2.svg" alt="Icon 2" />
+                    <img src="public/img/group27-icon2.svg" alt="Icon 2" />
                     47 bài lập trình
                   </p>
                   <p>
-                    <img src="public/images/group27-icon3.svg" alt="Icon 3" />
+                    <img src="public/img/group27-icon3.svg" alt="Icon 3" />
                     Chứng chỉ khi hoàn thành 80% khóa học
                   </p>
                 </div>

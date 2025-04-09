@@ -23,7 +23,7 @@ document
       };
 
       sessionStorage.setItem("userInfo", JSON.stringify(userData));
-      window.location.href = "home.html"; // Chuyển hướng
+      window.location.href = "index.html"; // Chuyển hướng
     } else {
       alert("Incorrect email or password.");
     }

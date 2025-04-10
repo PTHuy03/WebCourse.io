@@ -70,6 +70,7 @@ async function seedAll() {
     for (const course of courses) {
       let courseLessons = [];
 
+
       const sampleVideo =
         "https://www.youtube.com/embed/8BDIkM6a7nE?si=N0jbUzrTh0t2Nvax";
 
@@ -162,7 +163,11 @@ async function seedAll() {
       await course.save();
     }
 
-    console.log("Master seeding completed with video URLs.");
+
+    console.log(
+      "Master seeding completed with distinction between basic and advanced courses."
+    );
+
     process.exit(0);
   } catch (error) {
     console.error("Master seeding error:", error);

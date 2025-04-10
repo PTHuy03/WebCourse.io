@@ -1,4 +1,3 @@
-
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./db");
@@ -17,15 +16,8 @@ connectDB();
 // Middleware to parse JSON
 app.use(
   cors({
-    origin: function (origin, callback) {
-      const allowedOrigins = ["http://localhost:5500", "http://127.0.0.1:5500"];
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true,
+    origin: "*", // Cho phép tất cả domain
+    credentials: true, // Nếu dùng cookie, cần cấu hình thêm phía FE
   })
 );
 app.use(express.json());
@@ -43,4 +35,3 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-

@@ -197,7 +197,7 @@
               </div>
               <div class="course-banner-right">
                 <img
-                  src="public/images/course-python-banner.png"
+                  src="public/img/course-python-banner.png"
                   alt="Python Logo"
                 />
               </div>
@@ -352,9 +352,7 @@
                 async function loadLessons() {
                   try {
                     const response = await fetch(
-
-                      `https://webcourse-io.onrender.com/api/courses/67f74eac9e18aa8b48794ada`
-
+                      `https://webcourse-io.onrender.com/api/courses/67f759d9dcf4e25662273ed5`
                     );
                     const course = await response.json();
                     const lessons = course.lessons || [];
@@ -396,7 +394,9 @@
                   } else {
                     lessons.forEach((lesson) => {
                       const a = document.createElement("a");
-                      a.href = `detail_lesson.html?lesson=${lesson._id}&video=${encodeURIComponent(lesson.videoUrl || '')}`;
+                      a.href = `detail_lesson.html?lesson=${
+                        lesson._id
+                      }&video=${encodeURIComponent(lesson.videoUrl || "")}`;
 
                       a.className =
                         "p-2 border rounded text-decoration-none text-dark d-block mb-2";
@@ -421,7 +421,7 @@
           <div class="col-md-4" style="min-height: 300px">
             <div class="group27 mb-4">
               <img
-                src="public/images/group27-bg.png"
+                src="public/img/group27-bg.png"
                 alt="Background"
                 class="bg"
               />
@@ -430,15 +430,15 @@
                 <h4>Thông tin khóa học</h4>
                 <div class="course-info">
                   <p>
-                    <img src="public/images/group27-icon1.svg" alt="Icon 1" /> 4
+                    <img src="public/img/group27-icon1.svg" alt="Icon 1" /> 4
                     tuần
                   </p>
                   <p>
-                    <img src="public/images/group27-icon2.svg" alt="Icon 2" />
+                    <img src="public/img/group27-icon2.svg" alt="Icon 2" />
                     49 bài lập trình
                   </p>
                   <p>
-                    <img src="public/images/group27-icon3.svg" alt="Icon 3" />
+                    <img src="public/img/group27-icon3.svg" alt="Icon 3" />
                     Chứng chỉ khi hoàn thành 100% khóa học
                   </p>
                 </div>

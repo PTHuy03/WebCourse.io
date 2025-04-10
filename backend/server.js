@@ -12,12 +12,22 @@ const PORT = process.env.PORT || 3000;
 
 connectDB();
 
+const allowedOrigins = [
+  "http://localhost:5500",
+  "http://127.0.0.1:5500",
+  "https://pthuy03.github.io",
+];
+
 app.use(
   cors({
     origin: function (origin, callback) {
-      callback(null, origin || "*"); // Cho phép tất cả origin
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
     },
-    credentials: true, // Hỗ trợ cookie, auth header,...
+    credentials: true,
   })
 );
 

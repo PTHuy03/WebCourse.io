@@ -10,16 +10,17 @@ const supportRouter = require("./routes/support");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Connect to MongoDB
 connectDB();
 
-// Middleware to parse JSON
 app.use(
   cors({
-    origin: "*", // Cho phép tất cả domain
-    credentials: true, // Nếu dùng cookie, cần cấu hình thêm phía FE
+    origin: function (origin, callback) {
+      callback(null, origin || "*"); // Cho phép tất cả origin
+    },
+    credentials: true, // Hỗ trợ cookie, auth header,...
   })
 );
+
 app.use(express.json());
 
 app.use("/api/users", usersRouter);
@@ -27,7 +28,6 @@ app.use("/api/courses", coursesRouter);
 app.use("/api/lessons", lessonsRouter);
 app.use("/api/support", supportRouter);
 
-// Simple route
 app.get("/", (req, res) => {
   res.send("Backend server is running and connected to MongoDB!");
 });

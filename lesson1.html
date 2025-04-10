@@ -352,7 +352,7 @@
                 async function loadLessons() {
                   try {
                     const response = await fetch(
-                      `http://localhost:3000/api/courses/67f74eac9e18aa8b48794ada`
+                      `https://webcourse-io.onrender.com/api/courses/67f74eac9e18aa8b48794ada`
                     );
                     const course = await response.json();
                     const lessons = course.lessons || [];

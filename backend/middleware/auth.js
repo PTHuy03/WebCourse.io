@@ -1,9 +1,12 @@
-const jwt = require("jsonwebtoken");
 
-const SECRET_KEY = "your_secret_key"; // Nên dùng biến môi trường .env trong production
+const jwt = require('jsonwebtoken');
+
+const SECRET_KEY = 'your_secret_key'; // Replace with env variable in production
+
 
 function authMiddleware(req, res, next) {
   let token;
+
 
   console.log("Headers: ", req.headers);
 
@@ -18,6 +21,7 @@ function authMiddleware(req, res, next) {
     }
   }
 
+
   // 2️⃣ Nếu không có cookie, thử lấy từ Authorization header
   if (!token && req.headers.authorization?.startsWith("Bearer ")) {
     token = req.headers.authorization.split(" ")[1];
@@ -26,6 +30,7 @@ function authMiddleware(req, res, next) {
   // 3️⃣ Nếu vẫn không có token
   if (!token) {
     return res.status(401).json({ error: "Unauthorized" });
+
   }
 
   try {
@@ -33,8 +38,10 @@ function authMiddleware(req, res, next) {
     req.user = decoded;
     next();
   } catch (error) {
+
     return res.status(401).json({ error: "Invalid token" });
   }
 }
 
 module.exports = authMiddleware;
+

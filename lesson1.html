@@ -352,7 +352,9 @@
                 async function loadLessons() {
                   try {
                     const response = await fetch(
+
                       `https://webcourse-io.onrender.com/api/courses/67f74eac9e18aa8b48794ada`
+
                     );
                     const course = await response.json();
                     const lessons = course.lessons || [];
@@ -394,7 +396,8 @@
                   } else {
                     lessons.forEach((lesson) => {
                       const a = document.createElement("a");
-                      a.href = `lesson1.html?lesson=${lesson._id}`;
+                      a.href = `detail_lesson.html?lesson=${lesson._id}&video=${encodeURIComponent(lesson.videoUrl || '')}`;
+
                       a.className =
                         "p-2 border rounded text-decoration-none text-dark d-block mb-2";
                       a.innerHTML = `

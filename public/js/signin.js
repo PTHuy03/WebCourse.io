@@ -1,3 +1,4 @@
+
 document
   .querySelector("button.btn-success")
   .addEventListener("click", async function () {
@@ -36,3 +37,4 @@ document
       alert("An error occurred during login.");
     }
   });
+

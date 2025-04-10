@@ -1,3 +1,4 @@
+
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -9,19 +10,22 @@ const User = require("../models/User");
 
 // Register new user
 router.post("/register", async (req, res) => {
+
   try {
     const { username, email, password, role } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ username, email, password: hashedPassword, role });
     await user.save();
 
-    res.status(201).json({ message: "User registered successfully" });
+
+    res.status(201).json({ message: 'User registered successfully' });
+
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
 
-// User login
+
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -31,23 +35,28 @@ router.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
 
+
     const token = jwt.sign(
       { userId: user._id, email: user.email, role: user.role },
       SECRET_KEY,
-      { expiresIn: "7d" }
+
+      { expiresIn: '7d' }
     );
 
-    res.json({ message: "Login successful", token });
+    res.json({ message: 'Login successful', token });
+
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
 // Get current user info (protected)
+
 router.get("/me", authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId).select("-password");
     if (!user) return res.status(404).json({ error: "User not found" });
+
     res.json(user);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -55,6 +64,7 @@ router.get("/me", authMiddleware, async (req, res) => {
 });
 
 // Update user info (protected)
+
 router.put("/update", authMiddleware, async (req, res) => {
   try {
     const {
@@ -95,3 +105,4 @@ router.put("/update", authMiddleware, async (req, res) => {
 });
 
 module.exports = router;
+

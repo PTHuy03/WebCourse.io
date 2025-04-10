@@ -313,40 +313,65 @@
                 </div>
               </div>
               <script>
-                const chapterButtons = document.querySelectorAll(
-                  "#chapterList button"
-                );
-                const chapterContent =
-                  document.getElementById("chapterContent");
+                const chapterButtons = document.querySelectorAll("#chapterList button");
+                const chapterContent = document.getElementById("chapterContent");
 
-                const chapterDetails = {
-                  1: `
-<div class="d-flex flex-column gap-2">
-<div class="p-2 border rounded">Giới thiệu JavaScript và chú thích (15 phút)</div>
-<div class="p-2 border rounded">Viết chương trình Hello World đầu tiên (15 phút)</div>
-<div class="p-2 border rounded">Bài tập cơ bản với câu lệnh print (20 phút)</div>
-<div class="p-2 border rounded">Bài tập tính tổng hai số (20 phút)</div>
-<div class="p-2 border rounded">Comment trong JavaScript (15 phút)</div>
-</div>
-`,
-                  2: "<h4>Chương 2</h4><p>Nội dung chương 2 sẽ được cập nhật.</p>",
-                  3: "<h4>Chương 3</h4><p>Nội dung chương 3 sẽ được cập nhật.</p>",
-                  4: "<h4>Chương 4</h4><p>Nội dung chương 4 sẽ được cập nhật.</p>",
-                  5: "<h4>Chương 5</h4><p>Nội dung chương 5 sẽ được cập nhật.</p>",
-                  6: "<h4>Chương 6</h4><p>Nội dung chương 6 sẽ được cập nhật.</p>",
-                  7: "<h4>Chương 7</h4><p>Nội dung chương 7 sẽ được cập nhật.</p>",
-                  8: "<h4>Chương 8</h4><p>Nội dung chương 8 sẽ được cập nhật.</p>",
-                  9: "<h4>Chương 9</h4><p>Nội dung chương 9 sẽ được cập nhật.</p>",
-                };
+                async function loadLessons() {
+                  try {
+                    const response = await fetch('http://localhost:3000/api/courses/67f759d9dcf4e25662273ed7');
+                    const course = await response.json();
+                    const lessons = course.lessons || [];
 
-                chapterButtons.forEach((btn) => {
-                  btn.addEventListener("click", () => {
-                    chapterButtons.forEach((b) => b.classList.remove("active"));
-                    btn.classList.add("active");
-                    const chap = btn.getAttribute("data-chapter");
-                    chapterContent.innerHTML = chapterDetails[chap];
-                  });
-                });
+                    // Group lessons by chapter
+                    const chapters = {};
+                    lessons.forEach(lesson => {
+                      const chap = lesson.chapter || 1;
+                      if (!chapters[chap]) chapters[chap] = [];
+                      chapters[chap].push(lesson);
+                    });
+
+                    // Render initial chapter
+                    renderChapter(Object.keys(chapters)[0], chapters);
+
+                    // Add event listeners
+                    chapterButtons.forEach((btn) => {
+                      btn.addEventListener("click", () => {
+                        chapterButtons.forEach((b) => b.classList.remove("active"));
+                        btn.classList.add("active");
+                        const chap = btn.getAttribute("data-chapter");
+                        renderChapter(chap, chapters);
+                      });
+                    });
+                  } catch (error) {
+                    console.error('Error loading lessons:', error);
+                  }
+                }
+
+                function renderChapter(chap, chapters) {
+                  let lessons = chapters[chap] || [];
+                  lessons = lessons.sort((a, b) => a.order - b.order);
+                  chapterContent.innerHTML = '';
+
+                  if (lessons.length === 0) {
+                    chapterContent.innerHTML = `<p>Nội dung chương ${chap} sẽ được cập nhật.</p>`;
+                  } else {
+                    lessons.forEach(lesson => {
+                      const a = document.createElement('a');
+                      a.href = `detail_lesson.html?lesson=${lesson._id}&video=${encodeURIComponent(lesson.videoUrl || '')}`;
+                      a.className = 'p-2 border rounded text-decoration-none text-dark d-block mb-2';
+                      a.innerHTML = `
+                        ${lesson.title}
+                        <div class="d-flex gap-2 mt-2">
+                          <i class="bi bi-clock"></i>
+                          <span>15 phút</span>
+                        </div>
+                      `;
+                      chapterContent.appendChild(a);
+                    });
+                  }
+                }
+
+                loadLessons();
               </script>
             </section>
           </div>

@@ -115,12 +115,16 @@
                 const container = document.getElementById('courses-container');
                 container.innerHTML = '';
 
-                courses.forEach(course => {
+
+                courses.forEach((course, index) => {
+
                   const col = document.createElement('div');
                   col.className = 'col-md-3 mb-4';
 
                   const link = document.createElement('a');
-                  link.href = 'detail1.html'; // Placeholder, update to dynamic detail page if needed
+
+                  link.href = `detail${index + 1}.html`;
+
                   link.className = 'text-decoration-none text-dark';
 
                   const card = document.createElement('div');

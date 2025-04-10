@@ -1,3 +1,4 @@
+
 document
   .getElementById("signupForm")
   .addEventListener("submit", async function (e) {
@@ -13,6 +14,7 @@ document
       .querySelector('input[placeholder="Enter your password"]')
       .value.trim();
     const agree = document.getElementById("termsCheck").checked;
+
 
     if (!username || !email || !password) {
       alert("Please fill out all fields.");
@@ -49,3 +51,4 @@ document
       alert("An error occurred during signup.");
     }
   });
+

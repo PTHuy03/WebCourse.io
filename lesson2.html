@@ -164,15 +164,14 @@
           <div class="col-md-8">
             <section class="course-banner mb-4">
               <div class="course-banner-left">
-                <h1>Lập trình Python cơ bản</h1>
+                <h1>C++ cho người mới bắt đầu</h1>
                 <p>
-                  Khóa học lập trình Python cơ bản với các bài tập và lý thuyết
-                  dễ hiểu, học xong bạn có thể tự tin để tới với các chủ đề nâng
-                  cao hơn của Python.
+                  Khóa học lập trình C++ cơ bản với các bài tập và lý thuyết dễ hiểu,
+                  giúp bạn nắm vững kiến thức nền tảng để phát triển các ứng dụng C++ nâng cao.
                 </p>
                 <div class="author d-flex align-items-center">
                   <span class="me-3">
-                    Tác giả: <span style="color: blue">tuanql35</span>
+                    Tác giả: <span style="color: blue">locnguyen305</span>
                   </span>
                   <div class="text-warning">
                     <i class="bi bi-star-fill fs-5"></i>
@@ -182,7 +181,7 @@
                     <i class="bi bi-star fs-5"></i>
                   </div>
                 </div>
-                <p class="students">1384 Học viên</p>
+                <p class="students">1024 Học viên</p>
               </div>
               <div class="course-banner-right">
                 <img
@@ -304,67 +303,65 @@
                 </div>
               </div>
               <script>
-                const chapterButtons = document.querySelectorAll(
-                  "#chapterList button"
-                );
-                const chapterContent =
-                  document.getElementById("chapterContent");
+                const chapterButtons = document.querySelectorAll("#chapterList button");
+                const chapterContent = document.getElementById("chapterContent");
 
-                const chapterDetails = {
-                  1: `
-<div class="d-flex flex-column gap-2">
-                    <div class="p-2 border rounded">
-                      Chương trình C++ đầu tiên
-                      <div class="d-flex gap-2 mt-2">
-                        <i class="bi bi-clock"></i>
-                        <span>15 phút</span>
-                      </div>
-                    </div>
-                    <div class="p-2 border rounded">
-                      Cài đặt môi trường lập trình C++
-                      <div class="d-flex gap-2 mt-2">
-                        <i class="bi bi-clock"></i><span>10 phút</span>
-                      </div>
-                    </div>
-                    <div class="p-2 border rounded">
-                      Viết chương trình Hello World đầu tiên trong C++
-                      <div class="d-flex gap-2 mt-2">
-                        <i class="bi bi-clock"></i><span>12 phút</span>
-                      </div>
-                    </div>
-                    <div class="p-2 border rounded">
-                      Bài tập C++ cơ bản: câu lệnh cout
-                      <div class="d-flex gap-2 mt-2">
-                        <i class="bi bi-clock"></i><span>15 phút</span>
-                      </div>
-                    </div>
-                    <div class="p-2 border rounded">
-                      Bài tập C++ cơ bản: tính tổng hai số
-                      <div class="d-flex gap-2 mt-2">
-                        <i class="bi bi-clock"></i><span>15 phút</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                `,
-                  2: "<h4>Chương 2</h4><p>Nội dung chương 2 sẽ được cập nhật.</p>",
-                  3: "<h4>Chương 3</h4><p>Nội dung chương 3 sẽ được cập nhật.</p>",
-                  4: "<h4>Chương 4</h4><p>Nội dung chương 4 sẽ được cập nhật.</p>",
-                  5: "<h4>Chương 5</h4><p>Nội dung chương 5 sẽ được cập nhật.</p>",
-                  6: "<h4>Chương 6</h4><p>Nội dung chương 6 sẽ được cập nhật.</p>",
-                  7: "<h4>Chương 7</h4><p>Nội dung chương 7 sẽ được cập nhật.</p>",
-                  8: "<h4>Chương 8</h4><p>Nội dung chương 8 sẽ được cập nhật.</p>",
-                  9: "<h4>Chương 9</h4><p>Nội dung chương 9 sẽ được cập nhật.</p>",
-                };
+                async function loadLessons() {
+                  try {
+                    const response = await fetch('http://localhost:3000/api/courses/67f759d9dcf4e25662273ed6');
+                    const course = await response.json();
+                    const lessons = course.lessons || [];
 
-                chapterButtons.forEach((btn) => {
-                  btn.addEventListener("click", () => {
-                    chapterButtons.forEach((b) => b.classList.remove("active"));
-                    btn.classList.add("active");
-                    const chap = btn.getAttribute("data-chapter");
-                    chapterContent.innerHTML = chapterDetails[chap];
-                  });
-                });
+                    // Group lessons by chapter
+                    const chapters = {};
+                    lessons.forEach(lesson => {
+                      const chap = lesson.chapter || 1;
+                      if (!chapters[chap]) chapters[chap] = [];
+                      chapters[chap].push(lesson);
+                    });
+
+                    // Render initial chapter
+                    renderChapter(Object.keys(chapters)[0], chapters);
+
+                    // Add event listeners
+                    chapterButtons.forEach((btn) => {
+                      btn.addEventListener("click", () => {
+                        chapterButtons.forEach((b) => b.classList.remove("active"));
+                        btn.classList.add("active");
+                        const chap = btn.getAttribute("data-chapter");
+                        renderChapter(chap, chapters);
+                      });
+                    });
+                  } catch (error) {
+                    console.error('Error loading lessons:', error);
+                  }
+                }
+
+                function renderChapter(chap, chapters) {
+                  let lessons = chapters[chap] || [];
+                  lessons = lessons.sort((a, b) => a.order - b.order);
+                  chapterContent.innerHTML = '';
+
+                  if (lessons.length === 0) {
+                    chapterContent.innerHTML = `<p>Nội dung chương ${chap} sẽ được cập nhật.</p>`;
+                  } else {
+                    lessons.forEach(lesson => {
+                      const a = document.createElement('a');
+                      a.href = `detail_lesson.html?lesson=${lesson._id}&video=${encodeURIComponent(lesson.videoUrl || '')}`;
+                      a.className = 'p-2 border rounded text-decoration-none text-dark d-block mb-2';
+                      a.innerHTML = `
+                        ${lesson.title}
+                        <div class="d-flex gap-2 mt-2">
+                          <i class="bi bi-clock"></i>
+                          <span>15 phút</span>
+                        </div>
+                      `;
+                      chapterContent.appendChild(a);
+                    });
+                  }
+                }
+
+                loadLessons();
               </script>
             </section>
           </div>

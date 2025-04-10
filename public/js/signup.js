@@ -1,36 +1,54 @@
-document.getElementById("signupForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // Ngăn reload trang
 
-  const username = document
-    .querySelector('input[placeholder="Enter your name"]')
-    .value.trim();
-  const email = document
-    .querySelector('input[placeholder="Enter your email"]')
-    .value.trim();
-  const password = document
-    .querySelector('input[placeholder="Enter your password"]')
-    .value.trim();
-  const agree = document.getElementById("termsCheck").checked;
+document
+  .getElementById("signupForm")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-  if (!username || !email || !password) {
-    alert("Please fill out all fields.");
-    return;
-  }
+    const username = document
+      .querySelector('input[placeholder="Enter your name"]')
+      .value.trim();
+    const email = document
+      .querySelector('input[placeholder="Enter your email"]')
+      .value.trim();
+    const password = document
+      .querySelector('input[placeholder="Enter your password"]')
+      .value.trim();
+    const agree = document.getElementById("termsCheck").checked;
 
-  if (!agree) {
-    alert("You must agree to the terms & policy.");
-    return;
-  }
 
-  // Lưu vào sessionStorage
-  const userData = {
-    username,
-    email,
-    password, // Trong thực tế nên mã hóa
-  };
+    if (!username || !email || !password) {
+      alert("Please fill out all fields.");
+      return;
+    }
 
-  sessionStorage.setItem("user", JSON.stringify(userData));
+    if (!agree) {
+      alert("You must agree to the terms & policy.");
+      return;
+    }
 
-  alert("Signup successful!");
-  window.location.href = "signin.html";
-});
+    try {
+      const response = await fetch(
+        "https://webcourse-io.onrender.com/api/users/register",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username, email, password }),
+          credentials: "include",
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.error || "Registration failed");
+        return;
+      }
+
+      alert("Signup successful! Please login.");
+      window.location.href = "signin.html";
+    } catch (error) {
+      console.error("Signup error:", error);
+      alert("An error occurred during signup.");
+    }
+  });
+

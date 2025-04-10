@@ -1,30 +1,40 @@
+
 document
   .querySelector("button.btn-success")
-  .addEventListener("click", function () {
-    const emailInput = document.getElementById("email").value.trim();
-    const passwordInput = document.getElementById("password").value.trim();
+  .addEventListener("click", async function () {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-    // Lấy user từ sessionStorage
-    const storedUser = sessionStorage.getItem("user");
-
-    if (!storedUser) {
-      alert("No account found. Please sign up first.");
+    if (!email || !password) {
+      alert("Please enter email and password.");
       return;
     }
 
-    const user = JSON.parse(storedUser);
+    try {
+      const response = await fetch(
+        "https://webcourse-io.onrender.com/api/users/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password }),
+          credentials: "include",
+        }
+      );
 
-    // Kiểm tra email và mật khẩu
-    if (user.email === emailInput && user.password === passwordInput) {
-      // Lưu vào sessionStorage
-      const userData = {
-        username: user.username,
-        email: user.email,
-      };
+      const data = await response.json();
 
-      sessionStorage.setItem("userInfo", JSON.stringify(userData));
-      window.location.href = "index.html"; // Chuyển hướng
-    } else {
-      alert("Incorrect email or password.");
+      if (!response.ok) {
+        alert(data.error || "Login failed");
+        return;
+      }
+
+      // Save token in cookie
+      document.cookie = `authToken=${data.token}; path=/; max-age=604800`; // 7 days
+
+      window.location.href = "index.html";
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("An error occurred during login.");
     }
   });
+

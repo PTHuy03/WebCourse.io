@@ -1,15 +1,9 @@
-document.getElementById("signupForm").addEventListener("submit", function (e) {
-  e.preventDefault(); // Ngăn reload trang
+document.getElementById("signupForm").addEventListener("submit", async function (e) {
+  e.preventDefault();
 
-  const username = document
-    .querySelector('input[placeholder="Enter your name"]')
-    .value.trim();
-  const email = document
-    .querySelector('input[placeholder="Enter your email"]')
-    .value.trim();
-  const password = document
-    .querySelector('input[placeholder="Enter your password"]')
-    .value.trim();
+  const username = document.querySelector('input[placeholder="Enter your name"]').value.trim();
+  const email = document.querySelector('input[placeholder="Enter your email"]').value.trim();
+  const password = document.querySelector('input[placeholder="Enter your password"]').value.trim();
   const agree = document.getElementById("termsCheck").checked;
 
   if (!username || !email || !password) {
@@ -22,15 +16,25 @@ document.getElementById("signupForm").addEventListener("submit", function (e) {
     return;
   }
 
-  // Lưu vào sessionStorage
-  const userData = {
-    username,
-    email,
-    password, // Trong thực tế nên mã hóa
-  };
+  try {
+    const response = await fetch("http://localhost:3000/api/users/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, email, password }),
+      credentials: "include"
+    });
 
-  sessionStorage.setItem("user", JSON.stringify(userData));
+    const data = await response.json();
 
-  alert("Signup successful!");
-  window.location.href = "signin.html";
+    if (!response.ok) {
+      alert(data.error || "Registration failed");
+      return;
+    }
+
+    alert("Signup successful! Please login.");
+    window.location.href = "signin.html";
+  } catch (error) {
+    console.error("Signup error:", error);
+    alert("An error occurred during signup.");
+  }
 });

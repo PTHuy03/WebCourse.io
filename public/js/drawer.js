@@ -1,5 +1,4 @@
 // Active menu highlight
-// Active menu highlight
 window.addEventListener("message", function (event) {
   const currentPath = event.data;
 
@@ -26,38 +25,45 @@ window.addEventListener("message", function (event) {
   });
 });
 
-// Kiểm tra trạng thái đăng nhập
-const userInfo = sessionStorage.getItem("userInfo");
+// Hàm đọc giá trị cookie
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(";").shift();
+  return null;
+}
+
+// Kiểm tra trạng thái đăng nhập bằng cookie authToken
+const authToken = getCookie("authToken");
 const logoutLink = document.querySelector(".bottom-menu a.logout");
 const settingLink = document.querySelector(
   ".bottom-menu a[href='setting.html']"
 );
 
-if (userInfo) {
-  // User đã đăng nhập
-  if (logoutLink) {
+if (logoutLink) {
+  if (authToken) {
+    // User đã đăng nhập
     logoutLink.innerHTML = `<i class="bi bi-box-arrow-right"></i> Logout`;
-    logoutLink.setAttribute("href", "#");
-    logoutLink.setAttribute("target", "_top");
-
     logoutLink.addEventListener("click", function (e) {
       e.preventDefault();
-      sessionStorage.removeItem("userInfo");
+      // Xóa cookie authToken
+      document.cookie =
+        "authToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       window.top.location.href = "signin.html";
     });
-  }
-} else {
-  // User chưa đăng nhập
-  if (logoutLink) {
+  } else {
+    // User chưa đăng nhập
     logoutLink.innerHTML = `<i class="bi bi-box-arrow-in-right"></i> Login`;
-    logoutLink.setAttribute("href", "signin.html");
-    logoutLink.setAttribute("target", "_top");
-  }
-
-  if (settingLink) {
-    settingLink.addEventListener("click", function (e) {
+    logoutLink.addEventListener("click", function (e) {
       e.preventDefault();
       window.top.location.href = "signin.html";
     });
   }
+}
+
+if (settingLink && !authToken) {
+  settingLink.addEventListener("click", function (e) {
+    e.preventDefault();
+    window.top.location.href = "signin.html";
+  });
 }

@@ -1,0 +1,15 @@
+title: WebCourse.io
+description: A simple documentation site.
+baseurl: ""
+url: ""
+
+exclude:
+  - node_modules
+  - backend
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - package.json
+  - package-lock.json
+  - yarn.lock
+  - README.md

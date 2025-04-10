@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("todayDate").textContent = formattedDate;
   console.log("Token:", token);
   try {
-    const res = await fetch("http://localhost:3000/api/users/me", {
+    const res = await fetch("https://webcourse-io.onrender.com/api/users/me", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -65,10 +65,13 @@ document.getElementById("avatarInput").addEventListener("change", async (e) => {
   formData.append("avatar", file);
 
   try {
-    const res = await fetch("http://localhost:3000/api/users/upload-avatar", {
-      method: "POST",
-      body: formData,
-    });
+    const res = await fetch(
+      "https://webcourse-io.onrender.com/api/users/upload-avatar",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
 
     const data = await res.json();
     if (res.ok) {
@@ -117,14 +120,17 @@ document.getElementById("saveBtn").addEventListener("click", async () => {
   console.log("Updated User:", updatedUser);
 
   try {
-    const res = await fetch("http://localhost:3000/api/users/update", {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(updatedUser),
-    });
+    const res = await fetch(
+      "https://webcourse-io.onrender.com/api/users/update",
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(updatedUser),
+      }
+    );
 
     const result = await res.json();
 

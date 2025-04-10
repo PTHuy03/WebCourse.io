@@ -23,7 +23,7 @@
 
     <style>
       body {
-        font-family: 'Segoe UI', Tahoma, sans-serif;
+        font-family: "Segoe UI", Tahoma, sans-serif;
         margin: 0;
         background-color: #f5f7fa;
       }
@@ -44,20 +44,20 @@
       .lesson-card {
         background: #fff;
         border-radius: 15px;
-        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         padding: 30px;
         margin-bottom: 30px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
       .lesson-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
       }
       .lesson-title {
         font-size: 28px;
         font-weight: 700;
         margin-bottom: 20px;
-        background: linear-gradient(to right, #344c84, #D9AB01);
+        background: linear-gradient(to right, #344c84, #d9ab01);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -67,7 +67,7 @@
         height: 0;
         overflow: hidden;
         border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         margin-bottom: 20px;
       }
       .video-container iframe {
@@ -116,21 +116,28 @@
         return urlParams.get(param);
       }
 
-      const lessonId = getQueryParam('lesson');
-      const videoUrl = getQueryParam('video') || '';
+      const lessonId = getQueryParam("lesson");
+      const videoUrl = getQueryParam("video") || "";
 
       async function loadLesson() {
         try {
-          const response = await fetch(`http://localhost:3000/api/lessons/${lessonId}`);
-          if (!response.ok) throw new Error('Not found');
+          const response = await fetch(
+            `https://webcourse-io.onrender.com/api/lessons/${lessonId}`
+          );
+          if (!response.ok) throw new Error("Not found");
           const lesson = await response.json();
 
-          document.getElementById('lesson-title').innerText = lesson.title || 'Bài giảng';
-          document.getElementById('lesson-description').innerText = lesson.content || 'Không có nội dung mô tả.';
-          document.getElementById('lesson-video').src = videoUrl || lesson.videoUrl || '';
+          document.getElementById("lesson-title").innerText =
+            lesson.title || "Bài giảng";
+          document.getElementById("lesson-description").innerText =
+            lesson.content || "Không có nội dung mô tả.";
+          document.getElementById("lesson-video").src =
+            videoUrl || lesson.videoUrl || "";
         } catch (error) {
-          document.getElementById('lesson-title').innerText = "Bài giảng không tồn tại";
-          document.getElementById('lesson-description').innerText = "Không tìm thấy nội dung cho bài giảng này.";
+          document.getElementById("lesson-title").innerText =
+            "Bài giảng không tồn tại";
+          document.getElementById("lesson-description").innerText =
+            "Không tìm thấy nội dung cho bài giảng này.";
         }
       }
 

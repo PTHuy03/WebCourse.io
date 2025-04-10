@@ -344,117 +344,72 @@
                 const chapterContent =
                   document.getElementById("chapterContent");
 
-                const chapterDetails = {
-                  1: `
-                    <div class="d-flex flex-column gap-2">
-                    <a
-                      href="lesson1.html?lesson=intro-python"
-                      class="p-2 border rounded text-decoration-none text-dark"
-                    >
-                      Giới thiệu Python và chú thích
-                      <div class="d-flex gap-2 mt-2">
-                        <i class="bi bi-clock"></i>
-                        <span>15 phút</span>
-                      </div>
-                    </a>
-                    <a
-                      href="lesson1.html?lesson=hello-world"
-                      class="p-2 border rounded text-decoration-none text-dark"
-                    >
-                      Viết chương trình Hello World đầu tiên
-                      <div class="d-flex gap-2 mt-2">
-                        <i class="bi bi-clock"></i>
-                        <span>15 phút</span>
-                      </div>
-                    </a>
-                    <a
-                      href="lesson1.html?lesson=print-exercise"
-                      class="p-2 border rounded text-decoration-none text-dark"
-                    >
-                      Bài tập cơ bản với câu lệnh print
-                      <div class="d-flex gap-2 mt-2">
-                        <i class="bi bi-clock"></i>
-                        <span>20 phút</span>
-                      </div>
-                    </a>
-                    <a
-                      href="lesson1.html?lesson=sum-two-numbers"
-                      class="p-2 border rounded text-decoration-none text-dark"
-                    >
-                      Bài tập tính tổng hai số
-                      <div class="d-flex gap-2 mt-2">
-                        <i class="bi bi-clock"></i>
-                        <span>20 phút</span>
-                      </div>
-                    </a>
-                    <a
-                      href="lesson1.html?lesson=python-comment"
-                      class="p-2 border rounded text-decoration-none text-dark"
-                    >
-                      Comment trong Python
-                      <div class="d-flex gap-2 mt-2">
-                        <i class="bi bi-clock"></i>
-                        <span>15 phút</span>
-                      </div>
-                    </a>
-                  </div>
-                  `,
-                  2: `
-                    <div class="d-flex flex-column gap-2">
-                      <div class="p-2 border rounded">
-                        Kiểu dữ liệu, biến và ép kiểu
-                        <div class="d-flex gap-2 mt-2">
-                          <i class="bi bi-list-task"></i>
-                          <span>3 bài lập trình</span>
-                        </div>
-                      </div>
-                      <div class="p-2 border rounded">
-                        Khai báo biến trong Python
+                function getQueryParam(param) {
+                  const urlParams = new URLSearchParams(window.location.search);
+                  return urlParams.get(param);
+                }
+
+                async function loadLessons() {
+                  try {
+                    const response = await fetch(
+                      `http://localhost:3000/api/courses/67f74eac9e18aa8b48794ada`
+                    );
+                    const course = await response.json();
+                    const lessons = course.lessons || [];
+
+                    // Group lessons by chapter
+                    const chapters = {};
+                    lessons.forEach((lesson) => {
+                      const chap = lesson.chapter || 1;
+                      if (!chapters[chap]) chapters[chap] = [];
+                      chapters[chap].push(lesson);
+                    });
+
+                    // Render initial chapter
+                    renderChapter(Object.keys(chapters)[0], chapters);
+
+                    // Add event listeners
+                    chapterButtons.forEach((btn) => {
+                      btn.addEventListener("click", () => {
+                        chapterButtons.forEach((b) =>
+                          b.classList.remove("active")
+                        );
+                        btn.classList.add("active");
+                        const chap = btn.getAttribute("data-chapter");
+                        renderChapter(chap, chapters);
+                      });
+                    });
+                  } catch (error) {
+                    console.error("Error loading lessons:", error);
+                  }
+                }
+
+                function renderChapter(chap, chapters) {
+                  let lessons = chapters[chap] || [];
+                  lessons = lessons.sort((a, b) => a.order - b.order);
+                  chapterContent.innerHTML = "";
+
+                  if (lessons.length === 0) {
+                    chapterContent.innerHTML = `<p>Nội dung chương ${chap} sẽ được cập nhật.</p>`;
+                  } else {
+                    lessons.forEach((lesson) => {
+                      const a = document.createElement("a");
+                      a.href = `lesson1.html?lesson=${lesson._id}`;
+                      a.className =
+                        "p-2 border rounded text-decoration-none text-dark d-block mb-2";
+                      a.innerHTML = `
+                        ${lesson.title}
                         <div class="d-flex gap-2 mt-2">
                           <i class="bi bi-clock"></i>
                           <span>15 phút</span>
                         </div>
-                      </div>
-                      <div class="p-2 border rounded">
-                        Bài tập Python cơ bản: Khai báo biến và kiểu dữ liệu
-                        <div class="d-flex gap-2 mt-2">
-                          <i class="bi bi-clock"></i>
-                          <span>20 phút</span>
-                        </div>
-                      </div>
-                      <div class="p-2 border rounded">
-                        Bài tập Python cơ bản: Nối chuỗi và 1 số
-                        <div class="d-flex gap-2 mt-2">
-                          <i class="bi bi-clock"></i>
-                          <span>20 phút</span>
-                        </div>
-                      </div>
-                      <div class="p-2 border rounded">
-                        Bài tập Python cơ bản: tính diện tích và chu vi hình chữ nhật
-                        <div class="d-flex gap-2 mt-2">
-                          <i class="bi bi-clock"></i>
-                          <span>30 phút</span>
-                        </div>
-                      </div>
-                    </div>
-                  `,
-                  3: "<h4>Chương 3</h4><p>Nội dung chương 3 sẽ được cập nhật.</p>",
-                  4: "<h4>Chương 4</h4><p>Nội dung chương 4 sẽ được cập nhật.</p>",
-                  5: "<h4>Chương 5</h4><p>Nội dung chương 5 sẽ được cập nhật.</p>",
-                  6: "<h4>Chương 6</h4><p>Nội dung chương 6 sẽ được cập nhật.</p>",
-                  7: "<h4>Chương 7</h4><p>Nội dung chương 7 sẽ được cập nhật.</p>",
-                  8: "<h4>Chương 8</h4><p>Nội dung chương 8 sẽ được cập nhật.</p>",
-                  9: "<h4>Chương 9</h4><p>Nội dung chương 9 sẽ được cập nhật.</p>",
-                };
+                      `;
+                      chapterContent.appendChild(a);
+                    });
+                  }
+                }
 
-                chapterButtons.forEach((btn) => {
-                  btn.addEventListener("click", () => {
-                    chapterButtons.forEach((b) => b.classList.remove("active"));
-                    btn.classList.add("active");
-                    const chap = btn.getAttribute("data-chapter");
-                    chapterContent.innerHTML = chapterDetails[chap];
-                  });
-                });
+                loadLessons();
               </script>
             </section>
           </div>

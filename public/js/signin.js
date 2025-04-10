@@ -1,30 +1,34 @@
-document
-  .querySelector("button.btn-success")
-  .addEventListener("click", function () {
-    const emailInput = document.getElementById("email").value.trim();
-    const passwordInput = document.getElementById("password").value.trim();
+document.querySelector("button.btn-success").addEventListener("click", async function () {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value.trim();
 
-    // Lấy user từ sessionStorage
-    const storedUser = sessionStorage.getItem("user");
+  if (!email || !password) {
+    alert("Please enter email and password.");
+    return;
+  }
 
-    if (!storedUser) {
-      alert("No account found. Please sign up first.");
+  try {
+    const response = await fetch("http://localhost:3000/api/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+      credentials: "include"
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.error || "Login failed");
       return;
     }
 
-    const user = JSON.parse(storedUser);
+    // Save token in cookie
+    document.cookie = `authToken=${data.token}; path=/; max-age=604800`; // 7 days
 
-    // Kiểm tra email và mật khẩu
-    if (user.email === emailInput && user.password === passwordInput) {
-      // Lưu vào sessionStorage
-      const userData = {
-        username: user.username,
-        email: user.email,
-      };
-
-      sessionStorage.setItem("userInfo", JSON.stringify(userData));
-      window.location.href = "index.html"; // Chuyển hướng
-    } else {
-      alert("Incorrect email or password.");
-    }
-  });
+    alert("Login successful!");
+    window.location.href = "index.html";
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("An error occurred during login.");
+  }
+});
